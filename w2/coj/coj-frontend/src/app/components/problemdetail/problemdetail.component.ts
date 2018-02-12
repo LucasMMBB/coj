@@ -17,11 +17,10 @@ export class ProblemdetailComponent implements OnInit {
   ngOnInit() {
     // subscribe: when params change, this.problem will be updated
     // + sign here means converting string to integer
-    this.route.params.subscribe(
-      params => {
-        this.problem = this.dataService.getProblem(+params['id']);
-      }
-    );
+    this.route.params.subscribe(params => {
+      this.dataService.getProblem(+params['id'])
+          .then(problem => this.problem = problem);
+    });
   }
 
 }

@@ -4,14 +4,18 @@ import { Problem } from '../../models/problem.model';
 
 import { DataService } from '../../services/data.service';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @Component({
   selector: 'app-problemlist',
   templateUrl: './problemlist.component.html',
   styleUrls: ['./problemlist.component.css']
 })
 export class ProblemlistComponent implements OnInit {
-  
+
   problems: Problem[];
+  
+  subscriptionProblems: Subscription;
 
   constructor(private dataService: DataService) { }
 
@@ -19,8 +23,13 @@ export class ProblemlistComponent implements OnInit {
     this.getProblems();
   }
 
+  ngOnDestroy(){
+    this.subscriptionProblems.unsubscribe();
+  }
+
   getProblems(){
-  	this.problems = this.dataService.getProblems();
+      this.subscriptionProblems = this.dataService.getProblems()
+      .subscribe(problems => this.problems = problems);
   }
 
 }
