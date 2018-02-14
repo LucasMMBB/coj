@@ -11,13 +11,15 @@ import { DataService } from './services/data.service';
 
 import { routing } from './app.routes';
 import { NewproblemComponent } from './components/newproblem/newproblem.component';
+import { EditorComponent } from './components/editor/editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProblemlistComponent,
     ProblemdetailComponent,
-    NewproblemComponent
+    NewproblemComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
